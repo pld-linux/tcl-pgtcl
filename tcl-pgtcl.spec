@@ -1,0 +1,73 @@
+# TODO: extra (pgtclsh, pgwish) - messy Makefile, requires libpgtcl in library path and with proper soname
+Summary:	pgtcl-ng - Tcl interface for PostgreSQL
+Summary(pl):	pgtcl-ng - interfejs Tcl dla PostgreSQL
+Name:		tcl-pgtcl
+Version:	1.5.2
+Release:	1
+License:	BSD
+Group:		Development/Languages/Tcl
+Source0:	ftp://gborg.postgresql.org/pub/pgtclng/stable/pgtcl%{version}.tar.gz
+# Source0-md5:	d19dfdcb54c334495d32456a043e0232
+URL:		http://gborg.postgresql.org/project/pgtclng/projdisplay.php
+BuildRequires:	postgresql-devel
+BuildRequires:	tcl-devel >= 8
+Obsoletes:	postgresql-tcl
+Obsoletes:	tcl-libpgtcl
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%description
+pgtcl is the Tcl interface for the PostgreSQL Database Management
+System. It is a loadable Tcl module implementing commands which allow
+an application to interact with a PostgreSQL database. pgtcl-ng is a
+new revision of the pgtcl interface.
+
+%description -l pl
+pgtcl to interfejs Tcl do systemu baz danych PostgreSQL. Jest to
+³adowalny modu³ Tcl-a implementuj±cy polecenia pozwalaj±ce aplikacji
+wspó³pracowaæ z baz± danych PostgreSQL. pgtcl-ng to nowa wersja
+interfejsu pgtcl.
+
+%package devel
+Summary:	C header file for pgtcl-ng interface
+Summary(pl):	Plik nag³ówkowy C dla interfejsu pgtcl-ng
+Group:		Development/Languages/Tcl
+Requires:	%{name} = %{version}-%{release}
+Requires:	postgresql-devel
+Obsoletes:	postgresql-tcl-devel
+Obsoletes:	postgresql-tcl-static
+Obsoletes:	tcl-libpgtcl-devel
+
+%description devel
+C header file for pgtcl-ng interface.
+
+%description devel -l pl
+Plik nag³ówkowy C dla interfejsu pgtcl-ng.
+
+%prep
+%setup -q -n pgtcl%{version}
+
+%build
+%configure
+
+%{__make} \
+	CFLAGS_OPTIMIZE="%{rpmcflags} -D__NO_STRING_INLINES -D__NO_MATH_INLINES"
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(644,root,root,755)
+%doc COPYRIGHT ChangeLog* NEWS README*
+%dir %{_libdir}/pgtcl%{version}
+%attr(755,root,root) %{_libdir}/pgtcl%{version}/libpgtcl%{version}.so
+%{_libdir}/pgtcl%{version}/pkgIndex.tcl
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/libpgtcl.h
