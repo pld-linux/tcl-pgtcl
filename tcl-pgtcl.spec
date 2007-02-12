@@ -1,6 +1,6 @@
 # TODO: extra (pgtclsh, pgwish) - messy Makefile, requires libpgtcl in library path and with proper soname
 Summary:	pgtcl-ng - Tcl interface for PostgreSQL
-Summary(pl):	pgtcl-ng - interfejs Tcl dla PostgreSQL
+Summary(pl.UTF-8):   pgtcl-ng - interfejs Tcl dla PostgreSQL
 Name:		tcl-pgtcl
 Version:	1.5.2
 Release:	1
@@ -21,15 +21,15 @@ System. It is a loadable Tcl module implementing commands which allow
 an application to interact with a PostgreSQL database. pgtcl-ng is a
 new revision of the pgtcl interface.
 
-%description -l pl
+%description -l pl.UTF-8
 pgtcl to interfejs Tcl do systemu baz danych PostgreSQL. Jest to
-³adowalny modu³ Tcl-a implementuj±cy polecenia pozwalaj±ce aplikacji
-wspó³pracowaæ z baz± danych PostgreSQL. pgtcl-ng to nowa wersja
+Å‚adowalny moduÅ‚ Tcl-a implementujÄ…cy polecenia pozwalajÄ…ce aplikacji
+wspÃ³Å‚pracowaÄ‡ z bazÄ… danych PostgreSQL. pgtcl-ng to nowa wersja
 interfejsu pgtcl.
 
 %package devel
 Summary:	C header file for pgtcl-ng interface
-Summary(pl):	Plik nag³ówkowy C dla interfejsu pgtcl-ng
+Summary(pl.UTF-8):   Plik nagÅ‚Ã³wkowy C dla interfejsu pgtcl-ng
 Group:		Development/Languages/Tcl
 Requires:	%{name} = %{version}-%{release}
 Requires:	postgresql-devel
@@ -40,8 +40,8 @@ Obsoletes:	tcl-libpgtcl-devel
 %description devel
 C header file for pgtcl-ng interface.
 
-%description devel -l pl
-Plik nag³ówkowy C dla interfejsu pgtcl-ng.
+%description devel -l pl.UTF-8
+Plik nagÅ‚Ã³wkowy C dla interfejsu pgtcl-ng.
 
 %prep
 %setup -q -n pgtcl%{version}
