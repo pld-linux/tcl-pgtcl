@@ -1,6 +1,6 @@
 # TODO: extra (pgtclsh, pgwish) - messy Makefile, requires libpgtcl in library path and with proper soname
 Summary:	pgtcl-ng - Tcl interface for PostgreSQL
-Summary(pl.UTF-8):   pgtcl-ng - interfejs Tcl dla PostgreSQL
+Summary(pl.UTF-8):	pgtcl-ng - interfejs Tcl dla PostgreSQL
 Name:		tcl-pgtcl
 Version:	1.5.2
 Release:	1
@@ -29,7 +29,7 @@ interfejsu pgtcl.
 
 %package devel
 Summary:	C header file for pgtcl-ng interface
-Summary(pl.UTF-8):   Plik nagłówkowy C dla interfejsu pgtcl-ng
+Summary(pl.UTF-8):	Plik nagłówkowy C dla interfejsu pgtcl-ng
 Group:		Development/Languages/Tcl
 Requires:	%{name} = %{version}-%{release}
 Requires:	postgresql-devel
