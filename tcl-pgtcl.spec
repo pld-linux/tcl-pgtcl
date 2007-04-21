@@ -2,13 +2,14 @@
 Summary:	pgtcl-ng - Tcl interface for PostgreSQL
 Summary(pl.UTF-8):	pgtcl-ng - interfejs Tcl dla PostgreSQL
 Name:		tcl-pgtcl
-Version:	1.5.2
+Version:	1.6.0
 Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
-Source0:	ftp://gborg.postgresql.org/pub/pgtclng/stable/pgtcl%{version}.tar.gz
-# Source0-md5:	d19dfdcb54c334495d32456a043e0232
-URL:		http://gborg.postgresql.org/project/pgtclng/projdisplay.php
+Source0:	http://pgfoundry.org/frs/download.php/1229/pgtcl%{version}.tar.gz
+# Source0-md5:	25eda4bb40fb3d4ec9b205a1fdc1bbbc
+URL:		http://pgfoundry.org/projects/pgtclng/
+Provides:	tcl(Pgtcl)
 BuildRequires:	postgresql-devel
 BuildRequires:	tcl-devel >= 8
 Obsoletes:	postgresql-tcl
