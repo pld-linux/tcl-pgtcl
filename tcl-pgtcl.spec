@@ -50,8 +50,7 @@ Plik nagłówkowy C dla interfejsu pgtcl-ng.
 %build
 %configure
 
-%{__make} \
-	CFLAGS_OPTIMIZE="%{rpmcflags} -D__NO_STRING_INLINES -D__NO_MATH_INLINES"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
