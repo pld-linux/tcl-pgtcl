@@ -2,18 +2,18 @@
 Summary:	pgtcl-ng - Tcl interface for PostgreSQL
 Summary(pl.UTF-8):	pgtcl-ng - interfejs Tcl dla PostgreSQL
 Name:		tcl-pgtcl
-Version:	1.6.0
+Version:	3.0.0
 Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
-Source0:	http://pgfoundry.org/frs/download.php/1229/pgtcl%{version}.tar.gz
-# Source0-md5:	25eda4bb40fb3d4ec9b205a1fdc1bbbc
-URL:		http://pgfoundry.org/projects/pgtclng/
+Source0:	https://github.com/flightaware/Pgtcl/archive/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	cc01148205fbf130f1a2930fdee00ec1
+URL:		https://flightaware.github.io/Pgtcl/
 BuildRequires:	postgresql-devel
 BuildRequires:	tcl-devel >= 8
 Provides:	tcl(Pgtcl)
-Obsoletes:	postgresql-tcl
-Obsoletes:	tcl-libpgtcl
+Obsoletes:	postgresql-tcl < 3.0.0
+Obsoletes:	tcl-libpgtcl < 3.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -34,9 +34,9 @@ Summary(pl.UTF-8):	Plik nagłówkowy C dla interfejsu pgtcl-ng
 Group:		Development/Languages/Tcl
 Requires:	%{name} = %{version}-%{release}
 Requires:	postgresql-devel
-Obsoletes:	postgresql-tcl-devel
-Obsoletes:	postgresql-tcl-static
-Obsoletes:	tcl-libpgtcl-devel
+Obsoletes:	postgresql-tcl-devel < 3.0.0
+Obsoletes:	postgresql-tcl-static < 3.0.0
+Obsoletes:	tcl-libpgtcl-devel < 3.0.0
 
 %description devel
 C header file for pgtcl-ng interface.
@@ -45,9 +45,11 @@ C header file for pgtcl-ng interface.
 Plik nagłówkowy C dla interfejsu pgtcl-ng.
 
 %prep
-%setup -q -n pgtcl%{version}
+%setup -q -n Pgtcl-%{version}
 
 %build
+%{__aclocal}
+%{__autoconf}
 %configure
 
 %{__make}
@@ -63,11 +65,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc COPYRIGHT ChangeLog* NEWS README*
-%dir %{_libdir}/pgtcl%{version}
-%attr(755,root,root) %{_libdir}/pgtcl%{version}/libpgtcl%{version}.so
-%{_libdir}/pgtcl%{version}/pkgIndex.tcl
+%doc LICENSE ChangeLog* README*
+%dir %{_libdir}/pgtcl*.*
+%attr(755,root,root) %{_libdir}/pgtcl*.*/libpgtcl*.so
+%{_libdir}/pgtcl*.*/pkgIndex.tcl
+%{_libdir}/pgtcl*.*/postgres-helpers.tcl
+%{_mandir}/mann/PgGetConnectionId.n*
+%{_mandir}/mann/pg_*.n*
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/libpgtcl.h
+%{_includedir}/pgtclId.h
